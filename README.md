@@ -1,30 +1,52 @@
-# Klausurtimer
+# 📚 Klausurtimer
 
-Ein professioneller Timer für Schulen – damit mehrere Kurse gleichzeitig im Blick bleiben.
+Ein professioneller Prüfungstimer für Schulen – entwickelt für den Einsatz auf einem iPad, das per Beamer für alle Schülerinnen und Schüler sichtbar gemacht wird.
 
 ---
 
 ## Was macht diese App?
 
-Stell dir vor: In eurer Aula schreiben heute vier Kurse gleichzeitig eine Klausur. Der Mathe-Leistungskurs hat 90 Minuten, Deutsch hat 135 Minuten, und zwei Schüler im Englisch-Kurs haben Nachteilsausgleich und dürfen 30 Minuten länger schreiben.
+Stell dir vor: In eurer Aula schreiben heute vier Kurse gleichzeitig eine Klausur. Mathe-LK hat 30 Minuten hilfsmittelfreien Teil und dann 90 Minuten Hauptteil, Deutsch hat 135 Minuten, und zwei Schülerinnen im Englisch-Kurs haben Nachteilsausgleich (NTA) und dürfen 30 Minuten länger schreiben. Ein fünfter Kurs kommt dazu.
 
-Genau das kann diese App. Du richtest jeden Kurs einzeln ein, startest alle Timer auf einmal – und bekommst automatisch eine Benachrichtigung, wenn ein Kurs fertig ist, mit einer individuellen Nachricht für die Schülerinnen und Schüler.
+Genau das kann diese App. Alle Kurse sind gleichzeitig sichtbar, die Timers laufen parallel, Übergänge zwischen Phasen passieren automatisch – und wenn du die App versehentlich schließt, ist nichts verloren.
 
-**Funktionen:**
-- Beliebig viele Kurse gleichzeitig
-- Nachteilsausgleich (NTA) als Zusatzzeit pro Kurs einstellbar
-- Individuelle Abschlussnachricht je Kurs
-- Timer einzeln oder alle auf einmal starten, pausieren, zurücksetzen
-- Funktioniert auf Android und iOS
-- Vollständig auf Material Design 3 (aktuelles Google Design) aufgebaut
+### Funktionen im Überblick
+
+**Timer & Phasen**
+- Beliebig viele Kurse einrichten und gleichzeitig starten
+- Drei Phasen pro Kurs: hilfsmittelfreier Teil → Hauptteil → NTA
+- Automatischer Übergang zwischen Phasen ohne manuellen Eingriff
+- Während des hilfsmittelfreien Teils: kleine Anzeige der verbleibenden **Gesamtzeit** (also inkl. Hauptteil und NTA)
+- Einzelne Timer starten, pausieren oder zurücksetzen
+
+**NTA (Nachteilsausgleich)**
+- Pro Kurs aktivierbar, mit frei wählbarer Zusatzzeit in Minuten
+- Läuft automatisch nach dem Hauptteil an
+- Während des Hauptteils wird die NTA-Zusatzzeit sichtbar als Hinweis angezeigt – die angezeigte Zeit bezieht sich aber immer nur auf die aktuelle Phase
+- Eigene Farbe (rot) und eigene Fortschrittsanzeige für die NTA-Phase
+
+**Abschlussnachrichten**
+- Beim Ende des hilfsmittelfreien Teils: individueller Hinweis für die Schüler:innen
+- Beim Ende der Klausur: vollständige Abschlussnachricht (z.B. „Bitte legen Sie Ihren Stift ab…")
+- Mehrere Nachrichten können in einer Warteschlange stehen und werden nacheinander angezeigt
+
+**Beamer-Optimierung**
+- Bis zu 4 Kurse werden gleichzeitig in einem 2×2-Raster angezeigt
+- Die Karten passen sich automatisch an die verfügbare Bildschirmgröße an und füllen den Platz optimal aus
+- Ab 5 oder mehr Kursen: automatischer Seitenwechsel alle 10 Sekunden mit sanftem Fade-Übergang
+- Seitenindikator mit manuell tippbaren Punkten (Dots) – bei Antippen pausiert die automatische Rotation kurz
+- Die AppBar bleibt kompakt, damit maximale Fläche für die Karten bleibt
+
+**Persistenz – kein Datenverlust**
+- Alle Kurse inkl. Laufzustand werden automatisch gespeichert
+- Nach einem App-Absturz oder Neustart werden alle Timer wiederhergestellt
+- Laufende Timer berechnen die Zwischenzeit korrekt nach (basierend auf der gespeicherten Startzeit)
 
 ---
 
 ## Für Einsteiger: Was ist Flutter?
 
-Flutter ist ein kostenloses Programm von Google, mit dem man Apps für Android, iOS, Windows und mehr gleichzeitig bauen kann – alles aus einer einzigen Code-Basis. Du schreibst den Code einmal, und die App läuft überall.
-
-Die Programmiersprache dahinter heißt **Dart** – sie sieht ähnlich aus wie Java oder JavaScript und ist relativ leicht zu lernen.
+Flutter ist ein kostenloses Framework von Google, mit dem man Apps für Android, iOS, Windows und mehr aus einer einzigen Code-Basis bauen kann. Die Programmiersprache heißt **Dart** – sie ist relativ leicht zu lernen und sieht ähnlich aus wie Java oder JavaScript.
 
 ---
 
@@ -32,65 +54,55 @@ Die Programmiersprache dahinter heißt **Dart** – sie sieht ähnlich aus wie J
 
 ### Schritt 1: Flutter installieren
 
-1. Gehe zu [flutter.dev](https://flutter.dev) und klicke auf **Get started**
+1. Gehe auf [flutter.dev](https://flutter.dev) → **Get started**
 2. Wähle dein Betriebssystem (Windows, macOS oder Linux)
-3. Folge der Anleitung auf der Website – das dauert etwa 15–30 Minuten
+3. Folge der Anleitung – das dauert etwa 15–30 Minuten
 
-**Kurz gesagt:** Du lädst Flutter herunter, entpackst es und fügst es zu deinem „PATH" hinzu (das ist eine Liste von Programmen, die dein Computer immer findet). Die Flutter-Anleitung erklärt das Schritt für Schritt.
+Du lädst Flutter herunter, entpackst es und fügst es zu deinem „PATH" hinzu (eine Liste von Programmen, die dein Computer automatisch findet). Die Flutter-Anleitung erklärt das Schritt für Schritt.
 
 ### Schritt 2: Prüfen, ob alles funktioniert
 
-Öffne ein Terminal (unter Windows: **Eingabeaufforderung** oder **PowerShell**, unter macOS: **Terminal**) und tippe:
+Öffne ein Terminal (Windows: **Eingabeaufforderung** oder **PowerShell**, macOS: **Terminal**) und tippe:
 
 ```
 flutter doctor
 ```
 
-Dieses Kommando zeigt dir, was noch fehlt. Grüne Häkchen bedeuten: alles in Ordnung.
+Grüne Häkchen bedeuten: alles in Ordnung. Für reine iPad-Entwicklung brauchst du einen Mac mit Xcode.
 
-> Für reine Android-Entwicklung reicht es, wenn Android Studio installiert ist. Für iOS brauchst du einen Mac mit Xcode.
+### Schritt 3: Neues Flutter-Projekt anlegen
 
-### Schritt 3: Ein neues Flutter-Projekt anlegen
-
-Navigiere im Terminal zu dem Ordner, in dem du das Projekt ablegen möchtest, z.B.:
+Navigiere in den Ordner, in dem das Projekt liegen soll:
 
 ```
 cd Desktop
 ```
 
-Dann erstelle ein neues Projekt:
+Dann:
 
 ```
 flutter create klausurtimer
 ```
 
-Das dauert einen Moment. Danach gibt es einen neuen Ordner namens `klausurtimer`.
+### Schritt 4: Den Code einbauen
 
-### Schritt 4: Den Code dieser App einbauen
-
-Kopiere den Inhalt des `lib/`-Ordners aus diesem Projekt in den `lib/`-Ordner deines neu erstellten Projekts. (Den alten Inhalt – meist nur `main.dart` – kannst du dabei ersetzen.)
-
-Ersetze außerdem die `pubspec.yaml`-Datei mit der aus diesem Projekt.
+Kopiere den gesamten Inhalt des `lib/`-Ordners aus diesem Projekt in den `lib/`-Ordner deines neu erstellten Projekts (alten Inhalt ersetzen). Ersetze außerdem die `pubspec.yaml` mit der aus diesem Projekt.
 
 ### Schritt 5: Abhängigkeiten herunterladen
-
-Im Terminal, im Ordner deines Projekts:
 
 ```
 flutter pub get
 ```
 
-Das lädt alle nötigen Pakete (wie `provider` und `uuid`) herunter. 
+Das lädt alle nötigen Pakete herunter (`provider`, `uuid`, `shared_preferences`).
 
 ### Schritt 6: App starten
 
-Schließe dein Handy per USB an oder starte einen Emulator. Dann:
+Schließe dein iPad per USB an oder starte einen Simulator. Dann:
 
 ```
 flutter run
 ```
-
-Die App sollte nun auf deinem Gerät oder Emulator erscheinen! 🎉
 
 ---
 
@@ -98,64 +110,70 @@ Die App sollte nun auf deinem Gerät oder Emulator erscheinen! 🎉
 
 ```
 lib/
-├── main.dart               → Einstiegspunkt der App
-├── app.dart                → Haupt-App-Widget mit Theme
+├── main.dart                     → Einstiegspunkt der App
+├── app.dart                      → Haupt-App-Widget mit Theme-Konfiguration
 ├── theme/
-│   └── app_theme.dart      → Farben, Schriften, Button-Stile
+│   └── app_theme.dart            → Material 3 Farben, Formen und Stile
 ├── models/
-│   └── exam_session.dart   → Datenmodell: was ist ein Kurs?
+│   └── exam_session.dart         → Datenmodell: Kurs, Phasen, Timer-Logik, JSON-Serialisierung
 ├── providers/
-│   └── exam_provider.dart  → Die Logik: Timer starten, pausieren, etc.
+│   └── exam_provider.dart        → Zustand: Timer starten/pausieren, Phasenwechsel, Persistenz
 ├── screens/
-│   └── home_screen.dart    → Der Hauptbildschirm
+│   └── home_screen.dart          → Hauptbildschirm mit Beamer-Grid und Carousel
 ├── widgets/
-│   ├── exam_card.dart      → Die Timer-Karte für jeden Kurs
-│   ├── add_exam_sheet.dart → Formular zum Hinzufügen eines Kurses
-│   └── completion_dialog.dart → Dialog, der erscheint wenn die Zeit abläuft
+│   ├── exam_card.dart            → Timer-Karte pro Kurs mit Phasen- und Zeitanzeige
+│   ├── add_exam_sheet.dart       → Formular zum Hinzufügen und Bearbeiten eines Kurses
+│   └── completion_dialog.dart    → Dialog bei Phasen- und Klausurende
 └── utils/
-    └── time_formatter.dart → Hilfsfunktionen zur Zeitformatierung
+    └── time_formatter.dart       → Hilfsfunktionen zur Zeitformatierung
 ```
 
-**Warum so viele Dateien?** In echten Projekten teilt man den Code auf viele kleine Dateien auf. So bleibt alles übersichtlich. Wenn du einen Bug in der Timer-Logik suchst, weißt du sofort: der steckt in `exam_provider.dart`. Wenn das Design des Formulars falsch ist, schaust du in `add_exam_sheet.dart`.
+**Warum so viele Dateien?** In echten Projekten teilt man Code auf viele kleine Dateien auf – so bleibt alles übersichtlich und auffindbar. Wenn ein Bug in der Timer-Logik steckt, weißt du sofort: schau in `exam_provider.dart`. Wenn das Grid falsch angezeigt wird: `home_screen.dart`.
 
 ---
 
-## Wie die App funktioniert (kurz erklärt)
+## Wie die App technisch funktioniert
 
-Die App nutzt das `provider`-Paket für sogenanntes **State Management** – das bedeutet: der `ExamProvider` hält alle Daten (welche Kurse gibt es, wie viel Zeit ist noch übrig) und informiert die Benutzeroberfläche automatisch, wenn sich etwas ändert.
+**State Management mit Provider:** Der `ExamProvider` hält alle Daten (welche Kurse existieren, welche Phase läuft, wie viel Zeit noch übrig ist) und informiert die Oberfläche automatisch bei jeder Änderung.
 
-Ein Timer (`dart:async → Timer.periodic`) läuft einmal pro Sekunde und aktualisiert alle laufenden Countdown-Timer. Wenn ein Timer auf null läuft, wird der Kurs als fertig markiert und der Dialog wird angezeigt.
+**Timer:** Ein `Timer.periodic` läuft einmal pro Sekunde. Er prüft bei jedem Tick, ob eine Phase abgelaufen ist, und führt dann automatisch den Phasenwechsel durch oder markiert den Kurs als fertig.
+
+**Persistenz:** Alle Sessions werden bei jeder Änderung als JSON in `SharedPreferences` gespeichert (vergleichbar mit `localStorage` im Web). Beim Start lädt der Provider diese Daten und stellt alle Timer wieder her. Da laufende Timer den Zeitpunkt ihres Starts als `DateTime` speichern, kann die Zwischenzeit nach einem Neustart korrekt nachberechnet werden.
+
+**Beamer-Grid:** Ein `LayoutBuilder` misst den verfügbaren Platz und berechnet das optimale Seitenverhältnis (`childAspectRatio`) für die Karten dynamisch. So füllen 4 Karten immer exakt den Bildschirm aus – egal ob iPad Pro, iPad Mini oder ein anderes Gerät. Bei mehr als 4 Kursen rotiert ein `Timer.periodic` alle 10 Sekunden zur nächsten Seite, animiert mit einem `AnimationController`.
 
 ---
 
 ## Häufige Probleme
 
 **`flutter: command not found`**
-→ Flutter wurde nicht zum PATH hinzugefügt. Folge der Flutter-Anleitung nochmal bei Schritt 3.
+→ Flutter wurde nicht zum PATH hinzugefügt. Wiederhole die Flutter-Installation bei Schritt 3.
 
 **`No devices found`**
-→ Kein Gerät verbunden und kein Emulator gestartet. Öffne Android Studio → Virtual Device Manager und starte einen Emulator.
+→ Kein Gerät verbunden und kein Simulator gestartet. Öffne Xcode → Simulatoren, oder verbinde ein iPad per USB.
 
-**Fehler beim `flutter pub get`**
-→ Prüfe deine Internetverbindung. Manchmal hilft `flutter clean` und dann nochmal `flutter pub get`.
+**Fehler bei `flutter pub get`**
+→ Prüfe deine Internetverbindung. Manchmal hilft `flutter clean` und danach nochmal `flutter pub get`.
+
+**Timer läuft nach Neustart nicht weiter**
+→ Das ist normal bei `ExamStatus.paused`. Nur laufende Timer (Status `running`) werden mit korrekter Zwischenzeit fortgesetzt. Pausierte Timer bleiben an dem Punkt stehen, an dem sie pausiert wurden.
 
 ---
 
-## Weiterentwicklung
+## Anpassungen
 
-Du möchtest die App anpassen? Hier sind gute Einstiegspunkte:
-
-- **Farben ändern:** In `lib/theme/app_theme.dart` die `_seed`-Farbe anpassen
-- **Standard-Abschlussnachricht ändern:** In `lib/widgets/add_exam_sheet.dart` die Variable `_defaultMessage` bearbeiten
-- **Neue Felder zum Formular hinzufügen:** In `lib/widgets/add_exam_sheet.dart` und `lib/models/exam_session.dart`
+- **Rotationsintervall ändern (Carousel):** In `home_screen.dart` → `_BeamerGridState` → `_rotateDuration`
+- **Farbe ändern:** In `lib/theme/app_theme.dart` → `_seed`
+- **Standard-Abschlussnachricht:** In `lib/widgets/add_exam_sheet.dart` → `_defaultCompletionMessage`
+- **Standard NTA-Nachricht:** In `lib/widgets/add_exam_sheet.dart` → `_defaultToolFreeMessage`
 
 ---
 
 ## Anforderungen
 
 - Flutter SDK 3.2.0 oder neuer
-- Android SDK 21+ (Android 5.0) oder iOS 12+
-- Für die Entwicklung: Android Studio oder VS Code mit Flutter-Plugin
+- iOS 12+ / iPadOS 12+ (für iPad-Einsatz)
+- Für die Entwicklung: macOS mit Xcode (für iOS/iPadOS), oder Windows/Linux für Android
 
 ---
 
